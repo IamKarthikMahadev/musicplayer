@@ -11,19 +11,22 @@ const std::string FAILED =  "failed";
 #import <pthread.h>
 #import <stdlib.h>
 #import <stdio.h>
-
-void *DoTask(int *anArg)
+// Create a music player
+//
+void *MusicPlayer(void *anArg)
 {
     int tArg;
     
     // retrieve the thread argument
-    tArg = *anArg;
+    tArg = *((int*)anArg);
     //printf("DoTask:input:argument:%d\n", tArg);
     FILE * pFile;
-    pFile = fopen ("./myfile.txt","w");
+    pFile = fopen ("/Users/vidhyakarthikeyan/karthik/macos/MusicPlayer/MusicPlayer/MusicPlayer/myfile3.txt","w");
+    
+    std::cout << "fopen";
     if (pFile!=NULL)
     {
-        fputs ("fopen example",pFile);
+        fputs ("Music Player example To be done",pFile);
         fclose (pFile);
     }
    
@@ -33,24 +36,23 @@ void *DoTask(int *anArg)
     //
 }
 
-void ThreadCreate()
+void StartMusicPlayer()
 {
-    pthread_t *tID;
+    pthread_t tID;
     int tErr, tArg;
-    
+   
     // prepare the test argument
     tArg = 5120;
     
     // create a pthread
-    tErr = pthread_create(tID, NULL, DoTask, &tArg);
+    tErr = pthread_create(&tID, NULL, MusicPlayer, &tArg);
     
-    // dispose all threads
-    pthread_exit(NULL);
 }
 
 playerProxy::playerProxy()
 {
-    //ThreadCreate();
+    
+    StartMusicPlayer();
     
 }
 std::string playerProxy::AddToPlayList(const std::string& song)
