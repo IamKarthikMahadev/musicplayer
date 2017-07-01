@@ -6,54 +6,19 @@
 #include <iostream>
 #include <string>
 #include "MusicPlayerHandler.h"
+#include "Common.h"
+#include "MessageHelper.h"
+
+
 const std::string SUCCESS = "success";
 const std::string FAILED =  "failed";
 
-#import <pthread.h>
-#import <stdlib.h>
-#import <stdio.h>
 // Create a music player
 // Create queue
 // Write a queue monitor
 // Read from queue
-// Write to file
 
-//void *MusicPlayer(void *anArg)
-//{
-//    int tArg;
-//    
-//    // retrieve the thread argument
-//    tArg = *((int*)anArg);
-//    //printf("DoTask:input:argument:%d\n", tArg);
-//    std::string log_fileName =
-//    FILE * pFile;
-//    pFile = fopen ("./MusicPlayer","w");
-//    
-//    std::cout << "fopen";
-//    if (pFile!=NULL)
-//    {
-//        fputs ("Music Player example To be done",pFile);
-//        fclose (pFile);
-//    }
-//   
-//    
-//    //
-//    // RUN THE REST OF THE TASK...
-//    //
-//}
-//
-//void StartMusicPlayer()
-//{
-//    pthread_t tID;
-//    int tErr, tArg;
-//   
-//    // prepare the test argument
-//    tArg = 5120;
-//    
-//    // create a pthread
-//    tErr = pthread_create(&tID, NULL, MusicPlayer, &tArg);
-//    
-//}
+
 
 void StartMusicPlayer()
 {
@@ -68,36 +33,15 @@ void StartMusicPlayer()
 
 }
 
-
 playerProxy::playerProxy()
 {
-    
     StartMusicPlayer();
-    
-}
-std::string playerProxy::AddToPlayList(const std::string& song)
-{
-    if(OSXMusicPlayer::Inst().AddToPlayList(song))
-    {
-        return SUCCESS;
-    }
-    return FAILED;
-
-}
-
-std::string playerProxy::RemoveFromPlayList(const std::string& song)
-{
-    if(OSXMusicPlayer::Inst().RemoveFromPlayList(song))
-    {
-        return SUCCESS;
-    }
-    return FAILED;
-    
 }
 
 std::string playerProxy::Play()
 {
-    if(OSXMusicPlayer::Inst().Play())
+    
+    if(MessageHelper::SendMessage(MessageType::Play))
     {
         return SUCCESS;
     }
@@ -106,7 +50,7 @@ std::string playerProxy::Play()
 
 std::string playerProxy::Pause()
 {
-    if(OSXMusicPlayer::Inst().Pause())
+    if(MessageHelper::SendMessage(MessageType::Pause))
     {
         return SUCCESS;
     }
@@ -115,7 +59,7 @@ std::string playerProxy::Pause()
 
 std::string playerProxy::Next()
 {
-    if(OSXMusicPlayer::Inst().Next())
+    if(MessageHelper::SendMessage(MessageType::Next))
     {
         return SUCCESS;
     }
@@ -124,15 +68,9 @@ std::string playerProxy::Next()
 }
 std::string playerProxy::Prev()
 {
-    if(OSXMusicPlayer::Inst().Prev())
+    if(MessageHelper::SendMessage(MessageType::Prev))
     {
         return SUCCESS;
     }
     return FAILED;
-}
-
-std::string playerProxy::GetCurrSong()
-{
-    return OSXMusicPlayer::Inst().GetCurrentSong();
-
 }

@@ -15,9 +15,7 @@ public:
     std::string Pause();
     std::string Next();
     std::string Prev();
-    std::string GetCurrSong();
-    std::string AddToPlayList( const std::string& song);
-    std::string RemoveFromPlayList( const std::string& song );
+
 };
 
 

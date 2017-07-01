@@ -1,7 +1,7 @@
 
 
 
-#include "Settings.h"
+#include "Common.h"
 #include "MusicPlayerHandler.h"
 
 #include <sys/types.h>
@@ -9,6 +9,7 @@
 #include <sys/msg.h>
 #include <stdio.h>
 #include <string.h>
+#include <iostream>
 
 #define MSGSZ     128
 
@@ -29,23 +30,18 @@ namespace MusicPlayer
         int msqid;
         key_t key;
         message_buf  rbuf;
-        
-        /*
-         * Get the message queue id for the
-         * "name" 1234, which was created by
-         * the server.
-         */
         key = 1234;
+        std::cout << " Before msgget\n";
+        if ((msqid = msgget(key, 0666)) < 0) {
+            perror("msgget");
+            return 0;
+        }
+
         
         do {
-
-            
-            if ((msqid = msgget(key, 0666)) < 0) {
-                perror("msgget");
-                return 0;
-            }
             
             
+            std::cout << " Before msgrcv\n";
             /*
              * Receive an answer of message type 1.
              */
