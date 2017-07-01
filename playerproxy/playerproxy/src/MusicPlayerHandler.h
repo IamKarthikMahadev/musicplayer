@@ -1,4 +1,8 @@
-#ifndef SOCKET_H
-#define SOCKET_H
+#ifndef MUSICPLAYERHANDLER_H_
+#define MUSICPLAYERHANDLER_H_
+namespace MusicPlayer
+{
+    void* MusicPlayerHandlerThread(void* intArg);
+}
 
-#endif //SOCKET_H
+#endif //MUSICPLAYERHANDLER_H_

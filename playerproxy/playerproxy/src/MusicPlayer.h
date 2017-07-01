@@ -13,12 +13,13 @@
 #include <string>
 #include <list>
 
-enum PlayerStatus
+enum MusicPlayerState
 {
     Playing,
     Paused,
     Stopped
 };
+
 class IMusicPlayer
 {
 public:
@@ -51,7 +52,7 @@ public:
 private:
     std::list<std::string> m_playList;
     unsigned int m_currentSongIndex;
-    PlayerStatus m_PlayerState;
+    MusicPlayerState m_PlayerState;
     
     OSXMusicPlayer();
     ~OSXMusicPlayer();

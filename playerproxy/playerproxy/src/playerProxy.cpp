@@ -5,6 +5,7 @@
 #include "MusicPlayer.h"
 #include <iostream>
 #include <string>
+#include "MusicPlayerHandler.h"
 const std::string SUCCESS = "success";
 const std::string FAILED =  "failed";
 
@@ -12,42 +13,61 @@ const std::string FAILED =  "failed";
 #import <stdlib.h>
 #import <stdio.h>
 // Create a music player
+// Create queue
+// Write a queue monitor
+// Read from queue
+// Write to file
+
+//void *MusicPlayer(void *anArg)
+//{
+//    int tArg;
+//    
+//    // retrieve the thread argument
+//    tArg = *((int*)anArg);
+//    //printf("DoTask:input:argument:%d\n", tArg);
+//    std::string log_fileName =
+//    FILE * pFile;
+//    pFile = fopen ("./MusicPlayer","w");
+//    
+//    std::cout << "fopen";
+//    if (pFile!=NULL)
+//    {
+//        fputs ("Music Player example To be done",pFile);
+//        fclose (pFile);
+//    }
+//   
+//    
+//    //
+//    // RUN THE REST OF THE TASK...
+//    //
+//}
 //
-void *MusicPlayer(void *anArg)
-{
-    int tArg;
-    
-    // retrieve the thread argument
-    tArg = *((int*)anArg);
-    //printf("DoTask:input:argument:%d\n", tArg);
-    FILE * pFile;
-    pFile = fopen ("/Users/vidhyakarthikeyan/karthik/macos/MusicPlayer/MusicPlayer/MusicPlayer/myfile3.txt","w");
-    
-    std::cout << "fopen";
-    if (pFile!=NULL)
-    {
-        fputs ("Music Player example To be done",pFile);
-        fclose (pFile);
-    }
-   
-    
-    //
-    // RUN THE REST OF THE TASK...
-    //
-}
+//void StartMusicPlayer()
+//{
+//    pthread_t tID;
+//    int tErr, tArg;
+//   
+//    // prepare the test argument
+//    tArg = 5120;
+//    
+//    // create a pthread
+//    tErr = pthread_create(&tID, NULL, MusicPlayer, &tArg);
+//    
+//}
 
 void StartMusicPlayer()
 {
     pthread_t tID;
     int tErr, tArg;
-   
+
     // prepare the test argument
     tArg = 5120;
-    
+
     // create a pthread
-    tErr = pthread_create(&tID, NULL, MusicPlayer, &tArg);
-    
+    tErr = pthread_create(&tID, NULL, MusicPlayer::MusicPlayerHandlerThread, &tArg);
+
 }
+
 
 playerProxy::playerProxy()
 {
